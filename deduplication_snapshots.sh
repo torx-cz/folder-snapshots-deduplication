@@ -36,6 +36,12 @@ cd "$snapshot_dir" || exit 1
 
 # Loop through all folders in the snapshot directory
 for folder1 in */; do
+
+  # check if base folder exists, it could be already removed
+  if [ ! -d "$folder1" ]; then
+    continue
+  fi
+
   echo "Base folder for comparison: $folder1"
 
   for folder2 in */; do
@@ -62,6 +68,8 @@ for folder1 in */; do
 
   done
 done
+
+echo "-----"
 
 if $remove_duplicates; then
   echo "Duplicate removal process completed."
