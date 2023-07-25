@@ -31,19 +31,48 @@ If the `--force` or `-f` flag is provided, the script proceeds to remove duplica
 To perform a dry-run:
 
 ```sh
-./deduplicate_snapshots.sh /path/to/snapshots
+./deduplicate_snapshots.sh ./test-data
+
+# OUTPUT:
+#
+# Base folder for comparison: snapshot-1/
+#   Duplicate found (dry-run): snapshot-2/
+# Base folder for comparison: snapshot-2/
+#   Duplicate found (dry-run): snapshot-1/
+# Base folder for comparison: snapshot-3/
+# Base folder for comparison: snapshot-4/
+#   Duplicate found (dry-run): snapshot-5/
+# Base folder for comparison: snapshot-5/
+#   Duplicate found (dry-run): snapshot-4/
+# -----
+# Dry-run completed. Use --force or -f option to perform removal.
+
 ```
+
+
 
 To perform the removal:
 
 ```sh
-./deduplicate_snapshots.sh --force /path/to/snapshots
+./deduplicate_snapshots.sh --force ./test-data
 ```
 
 or
 
 ```sh
-./deduplicate_snapshots.sh -f /path/to/snapshots
+./deduplicate_snapshots.sh -f ./test-data
+
+# OUTPUT:
+#
+# NOTE: Running in FORCE mode. Duplicate folder will be removed!!
+# Base folder for comparison: snapshot-1/
+#   Removing duplicate: snapshot-2/
+# Base folder for comparison: snapshot-3/
+# Base folder for comparison: snapshot-4/
+#   Removing duplicate: snapshot-5/
+# -----
+# Duplicate removal process completed.
+
 ```
 
 ### Important Note
